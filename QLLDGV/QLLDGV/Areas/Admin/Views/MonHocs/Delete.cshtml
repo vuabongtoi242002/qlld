@@ -1,0 +1,54 @@
+﻿@model Database.Framework.MonHoc
+
+@{
+    ViewBag.Title = "Xóa môn học";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h3>óa môn học này?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã môn học
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaMH)
+        </dd>
+
+        <dt>
+            Tên môn học
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenMH)
+        </dd>
+
+        <dt>
+            Ngành
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nganh1.TenNganh)
+        </dd>
+
+        <dt>
+            Tín chỉ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TinChi)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Quay lại", "Index")
+        </div>
+    }
+</div>

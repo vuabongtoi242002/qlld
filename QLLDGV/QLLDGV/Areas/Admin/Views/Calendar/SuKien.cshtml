@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Database.Framework.SuKien>
+
+@{
+    ViewData["title"] = "Sự kiện";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <link href='~/Scripts/main.css' rel='stylesheet' />
+    <script src='~/Scripts/main.js'></script>
+    <script src='~/Scripts/main.min.js'></script>
+    <script src="~/Scripts/EventCal.js"></script>
+    <style>
+        body {
+            padding: 0;
+            font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+
+        #calendar {
+            max-width: auto;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("SuKien", "Calendar", FormMethod.Get))
+        {
+            <table class="table1" align="center" style="margin-bottom: 20px">
+                <tr>
+                    <td>
+                        <div>Tìm kiếm</div>
+                    </td>
+                    <td>
+                        @Html.TextBox("SearchSuKien", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+                    </td>
+                    <td>
+                        <input type="submit" name="submit" value="Tìm kiếm" class="btn btn-primary" />
+                        <input type="button" name="Nhapmoi" value="Nhập mới" class="btn btn-success" onclick="location.href='@Url.Action("Calendar",  "SuKiens/Create")'" />
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+    <table id="EventTable" style="display: none">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.MaSuKien)</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MonHoc.TenMH) -
+                    Nhóm: @Html.DisplayFor(modelItem => item.HocPhan.TenKhoa) -
+                    Giáo viên: @Html.DisplayFor(modelItem => item.GIAOVIEN1.HoTenGV) -
+                    Sự kiện: @Html.DisplayFor(modelItem => item.TenSuKien)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.StartDate).ToString()</td>
+            </tr>
+        }
+    </table>
+
+    <div id='calendar'></div>
+</body>
+</html>
+
+
+
+
+
+
+

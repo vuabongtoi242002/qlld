@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f50f5b6a97f54bb79378e9b3381af4f2" Name="Diagram1">
+        <EntityTypeShape EntityType="QLLDModel.GIAOVIEN" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLLDModel.HocPhan" Width="1.5" PointX="0.75" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLLDModel.LichDay" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLLDModel.Message" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLLDModel.MonHoc" Width="1.5" PointX="1.5" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLLDModel.Nganh" Width="1.5" PointX="1.5" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLLDModel.PHONG" Width="1.5" PointX="0.75" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLLDModel.QuanTri" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLLDModel.SuKien" Width="1.5" PointX="3.75" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLLDModel.sysdiagram" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLLDModel.THU" Width="1.5" PointX="0.75" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLLDModel.TietHoc" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <AssociationConnector Association="QLLDModel.FK__GIAOVIEN__BoMonP__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="QLLDModel.FK__LichDay__GVDay__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="QLLDModel.FK__Message__NguoiGu__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="QLLDModel.FK__SuKien__GiaoVien__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="QLLDModel.FK__HocPhan__MonHoc__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="QLLDModel.FK__LichDay__NhomHP__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="QLLDModel.FK__SuKien__Nhom__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="QLLDModel.FK__LichDay__GioBatD__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="QLLDModel.FK__LichDay__GioKetT__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="QLLDModel.FK__LichDay__PhongHo__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="QLLDModel.FK__LichDay__TenMH__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="QLLDModel.FK__LichDay__ThuNgay__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="QLLDModel.FK__MonHoc__Nganh__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="QLLDModel.FK__SuKien__TenHP__5070F446" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,27 @@
+﻿@model Database.Framework.GIAOVIEN
+
+@{
+    ViewBag.Title = "Thông tin giảng viên";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Thông tin giáo viên: @Model.HoTenGV</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Môn học phụ trách</dt>
+        <dd>@Model.MonHoc.TenMH</dd>
+
+        <dt>Số điện thoại</dt>
+        <dd>@Model.SodtGV</dd>
+
+        <dt>Email</dt>
+        <dd>@Model.EmailGV</dd>
+
+        <dt>Quê quán</dt>
+        <dd>@Model.QueQuan</dd>
+    </dl>
+</div>
+
+<p>@Html.ActionLink("Thay đổi thông tin", "Edit", new { id = Model.MaGV })</p>

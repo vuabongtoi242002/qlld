@@ -1,0 +1,77 @@
+﻿@model Database.Framework.SuKien
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>SuKien</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.TenHP, "Tên môn học", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @if (ViewBag.TenHP != null)
+                {
+                    @Html.DropDownListFor(model => model.TenHP, ViewBag.HOCPHANList as SelectList, "-- Môn học --", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TenHP, "", new { @class = "text-danger" })
+                }
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nhom, "Tên nhóm", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Nhom, new SelectList(" "), "-- Nhóm --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Nhom, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script>
+                $(document).ready(function () {
+                    $("#TenHP").change(function () {
+                        $.get("/SuKienGV/GetNhomHPList", { MaHP: $("#TenHP").val() }, function (data) {
+                            $("#Nhom").empty();
+                            $.each(data, function(index, row) {
+                                $("#Nhom").append("<option value='"+row.MaNhom+"'>"+row.TenNhom+"</option>")
+                            });
+                        });
+                    })
+                });
+        </script>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TenSuKien, "Tên sự kiện",htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenSuKien, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenSuKien, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartDate, "Ngày thực hiện",htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Thêm" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Quay lại", "Index")
+</div>

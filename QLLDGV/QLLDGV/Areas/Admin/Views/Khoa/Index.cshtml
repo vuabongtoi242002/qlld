@@ -1,0 +1,63 @@
+﻿@model PagedList.IPagedList<Database.Framework.Khoa>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Danh sách khoa";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Danh sách khoa</h2>
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<div>
+    @using (Html.BeginForm("Index", "Khoa", FormMethod.Get))
+    {
+        <table class="table1" align="center" style="margin-bottom: 20px">
+            <tr>
+                <td>
+                    <div>Tìm kiếm</div>
+                </td>
+                <td>
+                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+                </td>
+                <td>
+                    <input type="submit" name="submit" value="Tìm kiếm" class="btn btn-primary" />
+                    <input type="button" name="Nhapmoi" value="Nhập mới" class="btn btn-success" onclick="location.href='@Url.Action("Index", "Khoa/Create")'" />
+                </td>
+            </tr>
+        </table>
+    }
+</div>
+<table class="table">
+    <tr>
+        <th>
+            Tên môn học
+        </th>
+        <th>
+            Tên khoa
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MonHoc1.TenMH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenKhoa)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.MaKhoa }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.MaKhoa })
+            </td>
+        </tr>
+    }
+
+</table>
+<div class="page-count" style="display: inline-block; vertical-align:middle;">
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) trên @Model.PageCount
+</div>
+<br />
+<div class="pagination" style="display: inline-block; vertical-align: middle;">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
+</div>

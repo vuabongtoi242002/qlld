@@ -1,0 +1,85 @@
+﻿@model PagedList.IPagedList<Database.Framework.LichDay>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Danh sách lịch dạy";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<h1>Lịch dạy</h1>
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<div>
+    @using (Html.BeginForm("Index", "LichDayGV", FormMethod.Get))
+    {
+        <table class="table1" align="center" style="margin-bottom: 20px">
+            <tr>
+                <td>
+                    <div>Tìm kiếm</div>
+                </td>
+                <td>
+                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+                </td>
+                <td>
+                    <input type="submit" name="submit" value="Tìm kiếm" class="btn btn-primary" />
+                    <input type="button" name="Nhapmoi" value="Nhập mới" class="btn btn-success" onclick="location.href='@Url.Action("Index", "LichDayGV/Create")'" />
+                </td>
+            </tr>
+        </table>
+    }
+</div>
+<table class="table">
+    <tr>
+        <th>
+            Tên học phần
+        </th>
+        @*<th>
+            Nhóm
+        </th>*@
+        <th>
+            Thứ
+        </th>
+        <th>
+            Tiết học
+        </th>
+        <th>
+            Thời gian học
+        </th>
+        <th>
+            Phòng học
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MonHoc.TenMH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HocPhan.TenKhoa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.THU.TenThu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TietHoc.Tiet) - @Html.DisplayFor(modelItem => item.TietHoc1.Tiet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TietHoc.TGianBD) - @Html.DisplayFor(modelItem => item.TietHoc1.TGianKT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PHONG.TenPhong)
+            </td>
+            <td>
+                @Html.ActionLink("Xem thông tin", "Details", new { id = item.MaLich })
+            </td>
+        </tr>
+    }
+
+</table>
+<div class="page-count" style="display: inline-block; vertical-align:middle;">
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) trên @Model.PageCount
+</div>
+<br />
+<div class="pagination" style="display: inline-block; vertical-align: middle;">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
+</div>

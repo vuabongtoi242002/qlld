@@ -1,0 +1,39 @@
+﻿@model Database.Framework.Message
+@{
+    ViewBag.Title = "Xóa tin nhắn";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Xóa tin nhắn này?</h2>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Giảng viên gửi: @Html.DisplayFor(model => model.GIAOVIEN.HoTenGV)
+        </dt>
+
+        <dt>
+            Nội dung:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoiDung)
+        </dd>
+
+        <dt>
+            Ngày gửi: @Html.DisplayFor(model => model.NgayGui)
+        </dt>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Quay lại", "Index")
+        </div>
+    }
+</div>
+

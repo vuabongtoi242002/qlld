@@ -1,0 +1,115 @@
+﻿@model Database.Framework.GIAOVIEN
+
+@{
+    ViewBag.Title = "Thêm giáo viên";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Thêm giáo viên</h2>
+
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <div class="alert alert-success">@ViewBag.SuccessMessage</div>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.HoTenGV, "Tên giảng viên*", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.HoTenGV, new { htmlAttributes = new { @class = "form-control" } })
+            @if (!ViewData.ModelState.IsValidField("HoTenGV"))
+            {
+                <span class="text-danger">Không được bỏ trống</span>
+            }
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.BoMonPhuTrach, "Bộ môn phụ trách*", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("BoMonPhuTrach", null, htmlAttributes: new { @class = "form-control" })
+            @if (!ViewData.ModelState.IsValidField("BoMonPhuTrach"))
+            {
+                <span class="text-danger">Không được bỏ trống</span>
+            }
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SodtGV, "Số điện thoại*", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SodtGV, new { htmlAttributes = new { @class = "form-control" } })
+            @if (!ViewData.ModelState.IsValidField("SodtGV"))
+            {
+                <span class="text-danger">Không được bỏ trống</span>
+            }
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EmailGV, "Email*", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.EmailGV, new { htmlAttributes = new { @class = "form-control" } })
+            @if (!ViewData.ModelState.IsValidField("EmailGV"))
+            {
+                <span class="text-danger">Không được bỏ trống</span>
+            }
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.QueQuan, "Quê quán", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.QueQuan, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MatKhauGV, "Mật khẩu*", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.MatKhauGV, new { htmlAttributes = new { @class = "form-control" } })
+            @if (!ViewData.ModelState.IsValidField("MatKhauGV"))
+            {
+                <span class="text-danger">Không được bỏ trống</span>
+            }
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Thêm" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Quay lại", "Index")
+</div>
+
+<script>
+    function EmailCheck() {
+        $("#Status").html("Đang kiểm tra...");
+        $.post("@Url.Action("CheckEmailGV", "GIAOVIENs")",
+            {
+                emailGV: $("#EmailGV").val()
+            },
+            function (data) {
+                if (data == 0) {
+                    $("#Status").html('<font color="Green"></font>');
+                    $("#EmailGV").css("border-color", "Green");
+                }
+                else {
+                    $("#Status").html('<font color="Red">Email đã được sử dụng</font>');
+                    $("#EmailGV").css("border-color", "Red");
+                }
+            });
+    }
+</script>

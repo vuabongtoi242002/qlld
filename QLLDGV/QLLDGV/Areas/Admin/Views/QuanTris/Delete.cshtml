@@ -1,0 +1,48 @@
+﻿@model Database.Framework.QuanTri
+
+@{
+    ViewBag.Title = "Xóa người quản trị";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h3>Xóa người quản trị này?</h3>
+<div>
+    <h4>QuanTri</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên admin
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenAdmin)
+        </dd>
+
+        <dt>
+            Số điện thoại
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDT)
+        </dd>
+
+        <dt>
+            Email
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Quay lại", "Index")
+        </div>
+    }
+</div>

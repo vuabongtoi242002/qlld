@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Database.Framework.Message>
+@{
+        ViewBag.Title = "Tin nhắn";
+        Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<p>
+    @Html.ActionLink("Soạn thư cho admin", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Người gửi
+        </th>
+        <th>
+            Nội dung
+        </th>
+        <th>
+            Ngày gửi
+        </th>
+        <th>
+            Tình trạng
+        </th>
+        <th>
+            Phản hồi từ Admin
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @item.GIAOVIEN.HoTenGV
+        </td>
+        <td>
+            @item.NoiDung
+        </td>
+        <td>
+            @item.NgayGui
+        </td>
+        <td>
+            @item.Tinhtrang
+        </td>
+        <td>
+            @item.PhanHoi <!-- Thêm cột để hiển thị phản hồi từ Admin -->
+        </td>
+        <td>
+            @Html.ActionLink("Xem", "Details", new { id = item.MaMail })
+            @Html.ActionLink("Xóa", "Delete", new { id = item.MaMail })
+        </td>
+    </tr>
+        }
+</table>

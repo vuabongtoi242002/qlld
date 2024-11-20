@@ -1,0 +1,42 @@
+﻿@model Database.Framework.PHONG
+
+@{
+    ViewBag.Title = "Thông tin phòng";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Thông tin phòng</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã phòng 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaPhong)
+        </dd>
+
+        <dt>
+            Tên phòng 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenPhong)
+        </dd>
+
+        <dt>
+            Thông tin phòng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThongTinPhong)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaPhong }) |
+    @Html.ActionLink("Quay lại", "Index")
+</p>

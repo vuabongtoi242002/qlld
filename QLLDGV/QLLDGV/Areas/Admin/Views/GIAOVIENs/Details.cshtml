@@ -1,0 +1,57 @@
+﻿@model Database.Framework.GIAOVIEN
+
+@{
+    ViewBag.Title = "Thông tin giảng viên";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Thông tin giảng viên</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên giảng viên 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoTenGV)
+        </dd>
+
+        <dt>
+            Bộ môn phụ trách
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MonHoc.TenMH)
+        </dd>
+
+        <dt>
+            Số điện thoại
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SodtGV)
+        </dd>
+
+        <dt>
+            Email
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailGV)
+        </dd>
+
+        <dt>
+            Quê quán
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QueQuan)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaGV }) |
+    @Html.ActionLink("Quay lại", "Index")
+</p>

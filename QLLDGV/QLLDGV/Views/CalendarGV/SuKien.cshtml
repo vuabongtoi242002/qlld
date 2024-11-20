@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Database.Framework.SuKien>
+
+@{
+    ViewData["title"] = "Sự kiện";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <link href='~/Scripts/main.css' rel='stylesheet' />
+    <script src='~/Scripts/main.js'></script>
+    <script src="~/Scripts/EventCal.js"></script>
+    <style>
+        body {
+            padding: 0;
+            font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+
+        #calendar {
+            max-width: auto;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <table id="EventTable" style="display: none">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.MaSuKien)</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MonHoc.TenMH) -
+                    Nhóm: @Html.DisplayFor(modelItem => item.HocPhan.TenKhoa) -
+                    Giáo viên: @Html.DisplayFor(modelItem => item.GIAOVIEN1.HoTenGV) -
+                    Sự kiện: @Html.DisplayFor(modelItem => item.TenSuKien)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.StartDate).ToString()</td>
+            </tr>
+        }
+    </table>
+
+    <div id='calendar'></div>
+</body>
+</html>
+
+
+
+
+
+
+
+

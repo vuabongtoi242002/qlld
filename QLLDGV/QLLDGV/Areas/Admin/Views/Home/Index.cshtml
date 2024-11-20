@@ -1,0 +1,68 @@
+﻿@model PagedList.IPagedList<Database.Framework.Message>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Tin nhắn của giáo viên";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<p>@Html.ActionLink("Soạn thư cho admin", "Create")</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+            {
+                <div class="form-group">
+                    <div class="input-group">
+                        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Tìm kiếm" })
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+            {
+                <div class="alert alert-success" role="alert">
+                    @Html.Raw(ViewBag.SuccessMessage)
+                </div>
+            }
+
+            <table class="table">
+                <thead>
+                    <tr>
+                       
+                        <th>Nội dung</th>
+                        <th>Ngày gửi</th>
+                        <th>Tình trạng</th>
+                        <th>Phản hồi</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                          
+                            <td>@item.NoiDung</td>
+                            <td>@item.NgayGui</td>
+                            <td>@item.Tinhtrang</td>
+                            <td>@item.PhanHoi</td>
+                            <td>@Html.ActionLink("Xóa", "Delete", new { id = item.MaMail }, new { @class = "btn btn-danger btn-sm" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="page-count">Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) trên @Model.PageCount</div>
+                </div>
+                <div class="col-md-6">
+                    <div class="pagination">@Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
